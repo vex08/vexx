@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>⚠ SYSTEM BREACH ⚠</title>
+  <style>
+    body {
+      background: black;
+      color: lime;
+      font-family: monospace;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #start {
+      background: red;
+      color: white;
+      font-size: 22px;
+      padding: 30px;
+      text-align: center;
+      animation: blink 1s infinite;
+      cursor: pointer;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
+
+    #terminal {
+      display: none;
+      padding: 20px;
+      white-space: pre-line;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(1px, 1px); }
+      10% { transform: translate(-1px, -2px); }
+      20% { transform: translate(-3px, 0px); }
+      30% { transform: translate(3px, 2px); }
+      40% { transform: translate(1px, -1px); }
+      50% { transform: translate(-1px, 2px); }
+      60% { transform: translate(-3px, 1px); }
+      70% { transform: translate(3px, 1px); }
+      80% { transform: translate(-1px, -1px); }
+      90% { transform: translate(1px, 2px); }
+      100% { transform: translate(1px, -2px); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="start" onclick="startHack()">⚠️ دستگاه شما تحت حمله است! برای ادامه لمس کنید ⚠️</div>
+<div id="terminal"></div>
+
+<!-- Audio Elements -->
+<audio id="siren" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_43ad75e502.mp3?filename=alarm-95773.mp3" preload="auto" loop></audio>
+<audio id="voice" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_97f98a9990.mp3?filename=system-hacked-93789.mp3" preload="auto"></audio>
+
+<script>
+  const siren = document.getElementById("siren");
+  const voice = document.getElementById("voice");
+  const terminal = document.getElementById("terminal");
+  const start = document.getElementById("start");
+
+  const messages = [
+    "[!] اتصال به شبکه قربانی برقرار شد...",
+    "[✓] IP یافت شد: 192.168.1.101",
+    "[!] ورود به فایروال...",
+    "[✓] دسترسی ادمین تأیید شد",
+    "[!] جمع‌آوری فایل‌های حساس...",
+    "[✓] 3,421 فایل پیدا شد",
+    "[!] رمزگذاری فایل‌ها...",
+    "[✓] موفقیت‌آمیز",
+    "[!] فعال‌سازی میکروفن...",
+    "[✓] شنود فعال شد",
+    "[!] فعال‌سازی دوربین...",
+    "[✓] تصویر قربانی ضبط شد",
+    "[!] اطلاعات در حال ارسال به دارک‌وب...",
+    "[✓] آپلود کامل شد",
+    "[💀] عملیات کامل شد. شما تحت کنترل ما هستید.",
+    "[⏳] پاکسازی سیستم در 5... 4... 3... 2... 1..."
+  ];
+
+  function startHack() {
+    start.remove();
+    terminal.style.display = "block";
+    document.body.style.animation = "shake 0.3s infinite";
+    siren.play();
+    voice.play();
+
+    let i = 0;
+    function showNext() {
+      if (i < messages.length) {
+        const line = document.createElement("div");
+        line.textContent = messages[i];
+        terminal.appendChild(line);
+        terminal.scrollTop = terminal.scrollHeight;
+        i++;
+        setTimeout(showNext, 1200);
+      } else {
+        document.body.style.animation = "";
+      }
+    }
+
+    showNext();
+  }
+</script>
+
+</body>
+</html>
